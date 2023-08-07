@@ -16,6 +16,26 @@ header {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
+footer {
+  background-color: rgb(40, 40, 40);
+  padding: 20px 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer p a {
+  color: white;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+
 #logo a {
   font-family: "Bungee Shade", cursive;
   font-size: 60px;
@@ -52,24 +72,4 @@ header {
 
 #navbar li {
   margin-top: 20px;
-}
-
-footer {
-  background-color: rgb(40, 40, 40);
-  padding: 20px 0;
-  text-align: center;
-  margin-top: auto;
-}
-
-footer p {
-  margin: 0;
-}
-
-footer p a {
-  color: white;
-  text-decoration: none;
-}
-
-footer p a:hover {
-  text-decoration: underline;
 }

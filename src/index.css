@@ -1,5 +1,12 @@
 body {
   background-color: rgb(80, 80, 80);
+  margin: 0;
+  padding: 0;
+  font-family: "Righteous", cursive;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
@@ -45,4 +52,24 @@ header {
 
 #navbar li {
   margin-top: 20px;
+}
+
+footer {
+  background-color: rgb(40, 40, 40);
+  padding: 20px 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer p a {
+  color: white;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
 }

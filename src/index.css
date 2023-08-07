@@ -1,1 +1,48 @@
+body {
+  background-color: rgb(80, 80, 80);
+}
 
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+#logo a {
+  font-family: "Bungee Shade", cursive;
+  font-size: 60px;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  line-height: 40px;
+}
+
+#logo p {
+  font-family: "Righteous", cursive;
+  font-size: 15px;
+  color: white;
+  margin-top: 40px;
+}
+
+#navbar ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+#navbar li a {
+  text-decoration: none;
+  color: rgb(160, 160, 160);
+  font-family: "Righteous", cursive;
+  font-size: 20px;
+}
+
+#navbar li a:hover {
+  color: white;
+}
+
+#navbar li {
+  margin-top: 20px;
+}

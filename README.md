@@ -118,6 +118,12 @@ To run the project, double click on the index to open it in the browser.
 - Twitter: [@BiancaMeLopez](https://twitter.com/BiancaMeLopez)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/bianca-lopez-55a4a3276/)
 
+👤 **Ronald Mjonono**
+
+- GitHub: [@mj-e-boc](https://github.com/mj-e-boc)
+- Twitter: [@mjononoronald](https://twitter.com/Mjononoronald)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ronald-mjonono-86365988/)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

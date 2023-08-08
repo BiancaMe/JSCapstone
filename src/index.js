@@ -75,6 +75,8 @@ async function loadItems() {
           <span class="like-count">${likeCount}</span>
         </div>
         <button class="comments-button" data-item-id="${show.id}">Comments</button>
+        <span class="comment-icon">💬</span>
+        <span class="comment-count">0</span>
       `;
 
       const likeIcon = itemCard.querySelector(".like-icon");
@@ -87,14 +89,23 @@ async function loadItems() {
         });
       });
 
+      const commentIcon = itemCard.querySelector(".comment-icon");
+      const commentCountElement = itemCard.querySelector(".comment-count");
+      commentIcon.addEventListener("click", async () => {
+        const updatedCommentCount =
+          parseInt(commentCountElement.textContent, 10) + 1;
+        commentCountElement.textContent = updatedCommentCount;
+        await countComments();
+      });
+
       row.appendChild(itemCard);
     }
 
     kanbanBoard.appendChild(row);
   }
 
-  await countLikes(); // Update the likes counter
-  await countComments(); // Update the comments counter
+  await countLikes();
+  await countComments();
 }
 
 document.addEventListener("DOMContentLoaded", loadItems);

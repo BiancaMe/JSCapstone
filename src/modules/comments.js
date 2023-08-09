@@ -35,6 +35,10 @@ const addComment = (path) => {
   });
 };
 
+const setCounter = (comments) => {
+  document.querySelector('.cont').innerHTML = `(${comments.length})`;
+};
+
 const initComment = () => {
   const showsComments = document.querySelectorAll('.btn-comments');
   showsComments.forEach((element) => {
@@ -44,6 +48,7 @@ const initComment = () => {
       const { id } = e.target.parentElement;
       const pathById = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ak1TTqB18F0chgbGj32L/comments/?item_id=${id}`;
       const comments = await getComments(pathById);
+      setCounter(comments);
       displayComments(comments);
       addComment(path, id);
       closePop();

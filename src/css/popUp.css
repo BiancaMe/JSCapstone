@@ -84,6 +84,17 @@
   width: 60%;
 }
 
+.comments-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.cont {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .list-comments {
   text-align: left;
   list-style: none;

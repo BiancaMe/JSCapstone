@@ -36,7 +36,7 @@ footer p a:hover {
   text-decoration: underline;
 }
 
-#logo a {
+.logo a {
   font-family: "Bungee Shade", cursive;
   font-size: 60px;
   color: white;
@@ -46,7 +46,7 @@ footer p a:hover {
   line-height: 40px;
 }
 
-#logo p {
+.logo p {
   font-family: "Righteous", cursive;
   font-size: 15px;
   color: white;

@@ -20,18 +20,20 @@ const displayComments = (comments) => {
   }
 };
 
-const closePop = () => {
+const closePop = (btn) => {
   document.querySelector('#close').addEventListener('click', () => {
     document.querySelector('.popup').classList.add('hidden');
+    btn.classList.remove('active');
     const comments = document.querySelectorAll('.item-comment');
     comments.forEach((elem) => elem.remove());
   });
 };
 
-const addComment = (path) => {
+const addComment = (elem) => {
   document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
-    POSTcomment(path);
+    e.stopPropagation();
+    if (elem.matches('.active')) POSTcomment(path, elem.parentElement.id);
   });
 };
 
@@ -39,20 +41,24 @@ const setCounter = (comments) => {
   document.querySelector('.cont').innerHTML = `(${comments.length})`;
 };
 
+const comments = async (id, elem) => {
+  document.querySelector('.popup').classList.remove('hidden');
+  const pathById = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ak1TTqB18F0chgbGj32L/comments/?item_id=${id}`;
+  const comments = await getComments(pathById);
+  setCounter(comments);
+  displayComments(comments);
+  closePop(elem);
+};
+
 const initComment = () => {
-  const showsComments = document.querySelectorAll('.btn-comments');
-  showsComments.forEach((element) => {
-    element.addEventListener('click', async (e) => {
-      e.preventDefault();
-      document.querySelector('.popup').classList.remove('hidden');
-      const { id } = e.target.parentElement;
-      const pathById = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ak1TTqB18F0chgbGj32L/comments/?item_id=${id}`;
-      const comments = await getComments(pathById);
-      setCounter(comments);
-      displayComments(comments);
-      addComment(path, id);
-      closePop();
-    });
+  const showsComments = document.querySelector('#homeForTestComments');
+  showsComments.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    e.target.classList.add('active');
+    const { id } = e.target.parentElement;
+    comments(id, e.target);
+    addComment(e.target);
   });
 };
 

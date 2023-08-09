@@ -32,10 +32,6 @@ footer p a {
   text-decoration: none;
 }
 
-footer p a:hover {
-  text-decoration: underline;
-}
-
 .logo a {
   font-family: "Bungee Shade", cursive;
   font-size: 60px;
@@ -44,6 +40,10 @@ footer p a:hover {
   display: flex;
   align-items: center;
   line-height: 40px;
+}
+
+footer p a:hover {
+  text-decoration: underline;
 }
 
 .logo p {

@@ -6,7 +6,7 @@ import POSTcomment from './POSTcomments';
 // path = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ak1TTqB18F0chgbGj32L/comments';
 
 export const setCounter = (comments) => {
-  if (comments.lenght === undefined) {
+  if (comments.length === undefined) {
     document.querySelector('.cont').innerHTML = '(0)';
   } else {
     document.querySelector('.cont').innerHTML = `(${comments.length})`;
@@ -19,7 +19,7 @@ export const cleanComments = () => {
 };
 
 const closePop = (btn) => {
-  document.querySelector('#close').addEventListener('click', () => {
+  document.getElementById('close').addEventListener('click', () => {
     document.querySelector('.popup').classList.add('hidden');
     btn.classList.remove('active');
     cleanComments();
@@ -37,4 +37,3 @@ export const comments = async (id, elem) => {
     e.stopPropagation();
   }, { once: true });
 };
-

@@ -1,25 +1,25 @@
-export async function countLikes() {
-  const likeIcons = document.querySelectorAll(".like-icon");
+export default async function countLikes() {
+  const likeIcons = document.querySelectorAll('.like-icon');
   const likePromises = [];
 
   likeIcons.forEach((likeIcon) => {
     const itemId = likeIcon
-      .closest(".item-card")
-      .querySelector(".comments-button")
-      .getAttribute("data-item-id");
+      .closest('.item-card')
+      .querySelector('.comments-button')
+      .getAttribute('data-item-id');
     const apiUrl = `https://involvement-api.com/likes/${itemId}`;
 
     const promise = fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
           throw new Error(
-            `Network response was not ok. Status: ${response.status}`
+            `Network response was not ok. Status: ${response.status}`,
           );
         }
         return response.json();
       })
       .catch((error) => {
-        console.error("Error counting likes:", error);
+        console.error('Error counting likes:', error);
         return { likes: 0 };
       });
 
@@ -35,6 +35,6 @@ export async function countLikes() {
       likeCountElement.textContent = updatedLikeCount;
     });
   } catch (error) {
-    console.error("Error counting likes:", error);
+    console.error('Error counting likes:', error);
   }
 }

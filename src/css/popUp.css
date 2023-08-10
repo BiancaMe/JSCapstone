@@ -50,6 +50,13 @@
   color: rgb(232, 232, 232);
 }
 
+#dataShow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .p-title {
   color: rgb(251, 251, 251);
   font-size: 1.8em;
@@ -62,6 +69,12 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 0;
+  width: 60%;
+  border: 1px solid rgb(105, 99, 99);
+  border-radius: 2px;
+  text-align: left;
+  padding: 0 20px 0 20px;
+  background-color: rgb(73, 73, 73);
 }
 
 .f-item {
@@ -71,13 +84,14 @@
   font-family: sans-serif;
   line-height: 1em;
   margin: 0;
-  color: rgb(240, 240, 240);
+  color: rgb(207, 203, 203);
+  font-size: 0.7em;
 }
 
 .f-item p {
   color: rgb(3, 3, 3);
-  font-size: 1em;
-  font-weight: 500;
+  font-size: 1.2em;
+  font-weight: 600;
 }
 
 .p-comments {

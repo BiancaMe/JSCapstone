@@ -1,4 +1,4 @@
-const getComments = async (path) => {
+export const getComments = async (path) => {
   try {
     const data = await fetch(path);
     const comments = await data.json();
@@ -8,4 +8,12 @@ const getComments = async (path) => {
   }
 };
 
-export default getComments;
+export const getShowData = async (path) => {
+  try {
+    const data = await fetch(path);
+    const comments = await data.json();
+    return comments;
+  } catch (error) {
+    return error;
+  }
+};

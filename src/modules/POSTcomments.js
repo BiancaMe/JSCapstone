@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import displayComments from './displayComments';
 
-const POSTcomment = async (path, id) => {
+const POSTcomment = async (id) => {
   const userName = document.querySelector('#f-name').value;
   const text = document.querySelector('#f-text').value;
   await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ak1TTqB18F0chgbGj32L/comments/?item_id=${id}`, {

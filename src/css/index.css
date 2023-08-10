@@ -10,17 +10,25 @@ body {
 }
 
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(40, 40, 40, 0.9);
 }
 
 footer {
-  background-color: rgb(40, 40, 40);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(40, 40, 40, 0.9);
   padding: 20px 0;
   text-align: center;
-  margin-top: auto;
 }
 
 footer p {
@@ -61,9 +69,10 @@ footer p a:hover {
 
 #navbar li a {
   text-decoration: none;
-  color: rgb(160, 160, 160);
+  color: rgba(160, 160, 160, 0.8);
   font-family: "Righteous", cursive;
   font-size: 20px;
+  transition: color 0.3s ease;
 }
 
 #navbar li a:hover {
@@ -72,4 +81,69 @@ footer p a:hover {
 
 #navbar li {
   margin-top: 20px;
+}
+
+#kanbanBoard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 100px;
+  padding: 0 20px;
+}
+
+.row {
+  width: calc(33.33% - 10px); /* Three cards per row with spacing between */
+  margin-bottom: 20px;
+}
+
+.item-card {
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+.item-image {
+  width: 40%;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+h3 {
+  font-size: 14px;
+  margin: 5px 0;
+  color: white;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.like-icon {
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 3px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.like-count {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.comments-button {
+  background-color: rgba(0, 123, 255, 0.7);
+  border: none;
+  border-radius: 5px;
+  padding: 3px 8px;
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comments-button:hover {
+  background-color: rgba(0, 123, 255, 1);
 }

@@ -69,9 +69,10 @@ footer p a:hover {
 
 #navbar li a {
   text-decoration: none;
-  color: rgb(160, 160, 160);
+  color: rgba(160, 160, 160, 0.8);
   font-family: "Righteous", cursive;
   font-size: 20px;
+  transition: color 0.3s ease;
 }
 
 #navbar li a:hover {

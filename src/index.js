@@ -1,6 +1,7 @@
 import "./css/index.css";
 import "./css/popUp.css";
 import { comments } from "./modules/comments";
+import { fetchLikes, postLike, updateLikeCountUI } from "./modules/likes"; // Import likes functionality
 
 // Track comments using an object
 const commentCounts = {};
@@ -40,6 +41,7 @@ async function fetchCommentCount(itemId) {
 }
 
 async function loadItems() {
+  const appId = "Ak1TTqB18F0chgbGj32L"; // Your API key
   const baseApiUrl = "https://api.tvmaze.com/shows?page=1";
   const shows = await fetchData(baseApiUrl);
   const kanbanBoard = document.getElementById("kanbanBoard");
@@ -51,6 +53,7 @@ async function loadItems() {
     for (let j = i; j < i + 3 && j < shows.length; j += 1) {
       const show = shows[j];
       const commentCount = await fetchCommentCount(show.id);
+      const likeCount = await fetchLikes(appId, show.id); // Fetch like count using the likes module
 
       const itemCard = document.createElement("div");
       itemCard.classList.add("item-card");
@@ -60,21 +63,56 @@ async function loadItems() {
         <h3>${show.name}</h3>
         <div class="likes">
           <span class="like-icon">❤️</span>
-          <span class="like-count">0</span>
+          <span class="like-count">${likeCount}</span>
         </div>
+        <button class="btn-likes like-button" data-item-id="${show.id}">Like</button>
         <button class="btn-comments comments-button" data-item-id="${show.id}">Comments</button>
         <span class="comment-icon">💬</span>
         <span class="comment-count">${commentCount}</span>
       `;
 
+      const likeButton = itemCard.querySelector(".like-button");
+      const likeIcon = itemCard.querySelector(".like-icon"); // Get the like icon element
+      initLike(likeButton, likeIcon, itemCard, appId, show.id);
+
       const commentButton = itemCard.querySelector(".comments-button");
-      initComment(commentButton, itemCard, show.id); // Pass itemCard to initComment
+      initComment(commentButton, itemCard, show.id);
 
       row.appendChild(itemCard);
     }
 
     kanbanBoard.appendChild(row);
   }
+}
+
+async function initLike(btn, icon, card, appId, id) {
+  // Event listener for like button
+  btn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Check if the button is already active (liked)
+    if (btn.classList.contains("active")) {
+      return;
+    }
+
+    btn.classList.add("active");
+    await postLike(appId, id); // Post a like using the likes module
+    const updatedLikeCount = await fetchLikes(appId, id); // Fetch updated like count
+    updateLikeCountUI(card, updatedLikeCount); // Update like count in UI
+  });
+
+  // Event listener for like icon (toggle like on click)
+  icon.addEventListener("click", async () => {
+    if (btn.classList.contains("active")) {
+      return;
+    }
+
+    btn.classList.add("active");
+    await postLike(appId, id);
+    const updatedLikeCount = await fetchLikes(appId, id);
+    updateLikeCountUI(card, updatedLikeCount);
+  });
 }
 
 async function initComment(btn, card, id) {

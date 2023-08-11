@@ -2,8 +2,8 @@ import "./css/index.css";
 import "./css/popUp.css";
 import { comments } from "./modules/comments";
 
+// Track comments using an object
 const commentCounts = {};
-const likeCounts = {};
 
 async function fetchData(apiUrl) {
   try {
@@ -21,8 +21,8 @@ async function fetchData(apiUrl) {
   }
 }
 
-async function fetchCommentCount(appId, itemId) {
-  const apiUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/comments?item_id=${itemId}`;
+async function fetchCommentCount(itemId) {
+  const apiUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ak1TTqB18F0chgbGj32L/comments?item_id=${itemId}`;
 
   try {
     const response = await fetch(apiUrl);
@@ -39,26 +39,7 @@ async function fetchCommentCount(appId, itemId) {
   }
 }
 
-async function fetchLikeCount(appId, itemId) {
-  const apiUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/likes?item_id=${itemId}`;
-
-  try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error(
-        `Network response was not ok. Status: ${response.status}`
-      );
-    }
-    const data = await response.json();
-    return data.likes || 0;
-  } catch (error) {
-    console.error("Error fetching like count:", error);
-    return 0;
-  }
-}
-
 async function loadItems() {
-  const appId = "Ak1TTqB18F0chgbGj32L"; // Your API key
   const baseApiUrl = "https://api.tvmaze.com/shows?page=1";
   const shows = await fetchData(baseApiUrl);
   const kanbanBoard = document.getElementById("kanbanBoard");
@@ -69,8 +50,7 @@ async function loadItems() {
 
     for (let j = i; j < i + 3 && j < shows.length; j += 1) {
       const show = shows[j];
-      const commentCount = await fetchCommentCount(appId, show.id);
-      const likeCount = await fetchLikeCount(appId, show.id);
+      const commentCount = await fetchCommentCount(show.id);
 
       const itemCard = document.createElement("div");
       itemCard.classList.add("item-card");
@@ -80,73 +60,50 @@ async function loadItems() {
         <h3>${show.name}</h3>
         <div class="likes">
           <span class="like-icon">❤️</span>
-          <span class="like-count">${likeCount}</span>
+          <span class="like-count">0</span>
         </div>
-        <button class="btn-likes like-button" data-item-id="${show.id}">Like</button>
         <button class="btn-comments comments-button" data-item-id="${show.id}">Comments</button>
         <span class="comment-icon">💬</span>
         <span class="comment-count">${commentCount}</span>
       `;
 
-      const likeButton = itemCard.querySelector(".like-button");
-      initLike(likeButton, itemCard, appId, show.id);
-
       const commentButton = itemCard.querySelector(".comments-button");
-      initComment(commentButton, itemCard, show.id);
+      initComment(commentButton, itemCard, show.id); // Pass itemCard to initComment
 
       row.appendChild(itemCard);
     }
 
     kanbanBoard.appendChild(row);
   }
-
-  await countLikes();
-}
-
-async function initLike(btn, card, appId, id) {
-  btn.addEventListener("click", async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    // Check if the button is already active (liked)
-    if (btn.classList.contains("active")) {
-      return;
-    }
-
-    btn.classList.add("active");
-    await updateLikeCount(appId, id, card);
-  });
-}
-
-async function updateLikeCount(appId, id, card) {
-  const apiUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/likes`;
-
-  try {
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ item_id: id }),
-    });
-
-    if (!response.ok) {
-      throw new Error(
-        `Network response was not ok. Status: ${response.status}`
-      );
-    }
-
-    const likeCountElement = card.querySelector(".like-count");
-    const currentLikes = parseInt(likeCountElement.textContent);
-    const updatedLikes = currentLikes + 1;
-    likeCountElement.textContent = updatedLikes;
-  } catch (error) {
-    console.error("Error updating likes:", error);
-  }
 }
 
 async function initComment(btn, card, id) {
-  // ... (same as before)
+  btn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    btn.classList.add("active");
+    comments(id, btn); // This line may need further implementation based on your comments function
+
+    // Fetch and update comment count
+    const apiUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ak1TTqB18F0chgbGj32L/comments?item_id=${id}`;
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error(
+          `Network response was not ok. Status: ${response.status}`
+        );
+      }
+      const data = await response.json();
+      const updatedCommentCount = data.length || 0;
+
+      commentCounts[id] = updatedCommentCount;
+      const commentCountElement = card.querySelector(".comment-count");
+      commentCountElement.textContent = updatedCommentCount;
+    } catch (error) {
+      console.error("Error counting comments:", error);
+    }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", loadItems);

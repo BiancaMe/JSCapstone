@@ -2,7 +2,7 @@
 * @jest-environment jsdom
 */
 
-import { setCounter } from './src/modules/comments';
+import { setCounter } from '../modules/comments';
 
 document.body.innerHTML = '<h3>Comments</h3><p class="cont">()</p>';
 

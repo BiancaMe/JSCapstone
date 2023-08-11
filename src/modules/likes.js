@@ -12,7 +12,7 @@ export const fetchLikes = async () => {
   }
 };
 
-const likesCounter = (likes, idItem) => {
+export const likesCounter = (likes, idItem) => {
   const likesArr = Array.from(likes);
   const res = likesArr.find((obj) => obj.item_id === idItem);
   if (res === undefined) return 0;

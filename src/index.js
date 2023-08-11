@@ -1,7 +1,6 @@
 import "./css/index.css";
 import "./css/popUp.css";
 import { comments } from "./modules/comments";
-import { countLikes } from "./likesCounter"; // Update the path to your likesCounter.js
 
 // Track comments using an object
 const commentCounts = {};
@@ -76,9 +75,6 @@ async function loadItems() {
 
     kanbanBoard.appendChild(row);
   }
-
-  // Call countLikes to update like counts
-  await countLikes();
 }
 
 async function initComment(btn, card, id) {

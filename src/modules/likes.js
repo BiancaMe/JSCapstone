@@ -33,7 +33,7 @@ export const postLike = async (itemId) => {
       'Content-Type': ' application/json; charset=UTF-8',
     },
     body: JSON.stringify({
-       item_id: itemId,
+      item_id: itemId,
     }),
   }).then(() => { console.log('posted'); });
 };

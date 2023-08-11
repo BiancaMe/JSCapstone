@@ -24,7 +24,7 @@ describe('Test Counter Likes', () => {
   });
 
   test('Counter likes Case 3', () => {
-    const res =likesCounter(likes, 8);
+    const res = likesCounter(likes, 8);
     expect(0).toBe(res);
   });
 });

@@ -1,8 +1,6 @@
-const itemCounter = () => {
+const itemCounter = (div) => {
   const numberItmes = document.getElementById('item-counter');
-  const totalItems = document.querySelectorAll('.card');
-  numberItmes.parentElement.classList.remove('hidden');
-  numberItmes.textContent = totalItems.length;
+ numberItmes.innerHTML = `Shows (${div.getElementsByClassName('item-card').length})`;
 };
 
 export default itemCounter;

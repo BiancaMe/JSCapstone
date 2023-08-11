@@ -1,5 +1,6 @@
 import './css/index.css';
 import './css/popUp.css';
+import itemCounter from './item-counter';
 import { comments } from './modules/comments';
 import {
   getLikes, postLike, updateLikeCountUI,
@@ -117,11 +118,15 @@ async function loadItems() {
       const commentButton = itemCard.querySelector('.comments-button');
       initComment(commentButton, itemCard, show.id);
 
+
       row.appendChild(itemCard);
     }
-
     kanbanBoard.appendChild(row);
+    itemCounter(kanbanBoard);
   }
+  
 }
 
 document.addEventListener('DOMContentLoaded', loadItems);
+
+

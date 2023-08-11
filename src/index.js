@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import './css/index.css';
 import './css/popUp.css';
 import itemCounter from './item-counter';
@@ -118,15 +119,11 @@ async function loadItems() {
       const commentButton = itemCard.querySelector('.comments-button');
       initComment(commentButton, itemCard, show.id);
 
-
       row.appendChild(itemCard);
     }
     kanbanBoard.appendChild(row);
     itemCounter(kanbanBoard);
   }
-  
 }
 
 document.addEventListener('DOMContentLoaded', loadItems);
-
-

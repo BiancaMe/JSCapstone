@@ -4,15 +4,15 @@
 
 import itemCounter from '../item-counter';
 
-document.body.innerHTML = '<div id="item-counter"></div>' + '<div id="kanbanBoard"></div>';
+document.body.innerHTML = '<div id="item-counter"></div><div id="kanbanBoard"></div>';
 
 const append3items = () => {
-    const div = document.createElement('div');
-    div.setAttribute('class', 'row');
-    div.innerHTML = `<div class='item-card'></div>
+  const div = document.createElement('div');
+  div.setAttribute('class', 'row');
+  div.innerHTML = `<div class='item-card'></div>
                 <div class='item-card'></div>
                 <div class='item-card'></div>`;
-    document.querySelector('#kanbanBoard').appendChild(div);
+  document.querySelector('#kanbanBoard').appendChild(div);
 };
 
 describe('Test counterItems', () => {

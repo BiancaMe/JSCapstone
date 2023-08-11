@@ -1,52 +1,45 @@
 // likes.js
 
 // Function to fetch likes for a specific item
-export async function fetchLikes(itemId) {
-  const apiUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ak1TTqB18F0chgbGj32L/likes?item_id=${itemId}`;
-
+export const fetchLikes = async () => {
+  const apiUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ak1TTqB18F0chgbGj32L/likes';
   try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error(
-        `Network response was not ok. Status: ${response.status}`
-      );
-    }
-    const data = await response.json();
-    return data.likes || 0;
+    const data = await fetch(apiUrl);
+    const likes = await data.json();
+    return likes;
   } catch (error) {
-    console.error("Error fetching like count:", error);
-    return 0;
+    return error;
   }
-}
+};
+
+const likesCounter = (likes, idItem) => {
+  const likesArr = Array.from(likes);
+  const res = likesArr.find((obj) => obj.item_id === idItem);
+  if (res === undefined) return 0;
+  return res.likes;
+};
+
+export const getLikes = async (idItem) => {
+  const likes = await fetchLikes();
+  return likesCounter(likes, idItem);
+};
 
 // Function to post a like for a specific item
-export async function postLike(itemId) {
-  const apiUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ak1TTqB18F0chgbGj32L/likes`;
-
-  try {
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ item_id: itemId }),
-    });
-
-    if (!response.ok) {
-      throw new Error(
-        `Network response was not ok. Status: ${response.status}`
-      );
-    }
-
-    return true; // Like was successfully posted
-  } catch (error) {
-    console.error("Error posting like:", error);
-    return false;
-  }
-}
+export const postLike = async (itemId) => {
+  const apiUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ak1TTqB18F0chgbGj32L/likes';
+  await fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': ' application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
+       item_id: itemId,
+    }),
+  }).then(() => { console.log('posted'); });
+};
 
 // Function to update like count in UI
-export function updateLikeCountUI(card, updatedLikes) {
-  const likeCountElement = card.querySelector(".like-count");
-  likeCountElement.textContent = updatedLikes;
+export function updateLikeCountUI(card, likes) {
+  const likeCountElement = card.querySelector('.like-count');
+  likeCountElement.innerHTML = likes;
 }

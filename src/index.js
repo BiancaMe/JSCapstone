@@ -1,7 +1,7 @@
 import "./css/index.css";
 import "./css/popUp.css";
 import { comments } from "./modules/comments";
-import { fetchLikes, postLike, updateLikeCountUI } from "./modules/likes"; // Import likes functionality
+import { fetchLikes, getLikes, postLike, updateLikeCountUI } from "./modules/likes"; // Import likes functionality
 
 // Track comments using an object
 const commentCounts = {};
@@ -53,7 +53,7 @@ async function loadItems() {
     for (let j = i; j < i + 3 && j < shows.length; j += 1) {
       const show = shows[j];
       const commentCount = await fetchCommentCount(show.id);
-      const likeCount = await fetchLikes(appId, show.id); // Fetch like count using the likes module
+      const likeCount = await getLikes(show.id);
 
       const itemCard = document.createElement("div");
       itemCard.classList.add("item-card");
@@ -62,18 +62,15 @@ async function loadItems() {
         <img src="${show.image.medium}" alt="${show.name}" class="item-image">
         <h3>${show.name}</h3>
         <div class="likes">
-          <span class="like-icon">❤️</span>
+         <button class="like-icon"><span >❤️</span></button>
           <span class="like-count">${likeCount}</span>
         </div>
-        <button class="btn-likes like-button" data-item-id="${show.id}">Like</button>
         <button class="btn-comments comments-button" data-item-id="${show.id}">Comments</button>
         <span class="comment-icon">💬</span>
         <span class="comment-count">${commentCount}</span>
       `;
-
-      const likeButton = itemCard.querySelector(".like-button");
       const likeIcon = itemCard.querySelector(".like-icon"); // Get the like icon element
-      initLike(likeButton, likeIcon, itemCard, appId, show.id);
+      initLike(likeIcon, itemCard, appId, show.id);
 
       const commentButton = itemCard.querySelector(".comments-button");
       initComment(commentButton, itemCard, show.id);
@@ -85,32 +82,14 @@ async function loadItems() {
   }
 }
 
-async function initLike(btn, icon, card, appId, id) {
-  // Event listener for like button
-  btn.addEventListener("click", async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    // Check if the button is already active (liked)
-    if (btn.classList.contains("active")) {
-      return;
-    }
-
-    btn.classList.add("active");
-    await postLike(appId, id); // Post a like using the likes module
-    const updatedLikeCount = await fetchLikes(appId, id); // Fetch updated like count
-    updateLikeCountUI(card, updatedLikeCount); // Update like count in UI
-  });
+async function initLike(icon, card, appId, id) {
 
   // Event listener for like icon (toggle like on click)
-  icon.addEventListener("click", async () => {
-    if (btn.classList.contains("active")) {
-      return;
-    }
-
-    btn.classList.add("active");
-    await postLike(appId, id);
-    const updatedLikeCount = await fetchLikes(appId, id);
+  icon.addEventListener("click", async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    postLike(id);
+    const updatedLikeCount = await getLikes(id);
     updateLikeCountUI(card, updatedLikeCount);
   });
 }

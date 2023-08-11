@@ -11,23 +11,22 @@ let likes;
 describe('Test Counter Likes', () => {
   test('Counter likes Case 1', () => {
     likes = [
-      { id: 1, username: 'Bianca' },
-      { id: 2, username: 'Melanie' },
-      { id: 3, username: 'User' },
+      { item_id: 1, likes: 5 },
+      { item_id: 2, likes: 2  },
+      { item_id: 3, likes: 6},
     ];
-    countLikes(likes);
-    let res = '(0)';
+    likesCounter(likes, 1);
     if (likes.length !== undefined) res = `(${likes.length})`;
     expect(document.querySelector('.cont').textContent).toBe(res);
   });
 
   test('Counter likes Case 2', () => {
     likes = [
-      { id: 1, username: 'Bianca' },
-      { id: 2, username: 'Melanie' },
-      { id: 3, username: 'User' },
-      { id: 4, username: 'User' },
-      { id: 5, username: 'User' },
+      { item_id 1, username: 'Bianca' },
+      {item_id: 2, username: 'Melanie' },
+      { item_id 3, username: 'User' },
+      { item_id 4, username: 'User' },
+      { item_id 5, username: 'User' },
     ];
     countLikes(likes);
     let res = '(0)';

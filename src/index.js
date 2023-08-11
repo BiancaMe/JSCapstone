@@ -57,6 +57,7 @@ async function loadItems() {
     kanbanBoard.appendChild(row);
   }
 }
+
 function initComment(btn, card, id) {
   btn.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -68,6 +69,7 @@ function initComment(btn, card, id) {
     commentCountElement.textContent = commentCounts[id];
   });
 }
+
 document.addEventListener("DOMContentLoaded", loadItems);
 
 

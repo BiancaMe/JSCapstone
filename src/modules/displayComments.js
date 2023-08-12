@@ -1,12 +1,11 @@
-import { cleanComments, setCounter } from "./comments";
-import { getShowData, getComments } from "./GETcomments";
-import { updateCommentCounter } from "./counter"; // Import the updated setCounter function
+import { getShowData, getComments } from './GETcomments';
+import countComments from '../commentsCounter';
 
 const displayComments = async (id) => {
   const pathById = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ak1TTqB18F0chgbGj32L/comments/?item_id=${id}`;
   const comments = await getComments(pathById);
   const show = await getShowData(`https://api.tvmaze.com/shows/${id}`);
-  document.querySelector("#dataShow").innerHTML = `
+  document.querySelector('#dataShow').innerHTML = `
     <img src="${show.image.medium}">
     <h2 class="p-title">${show.name}</h2>
     <ul class="p-features">
@@ -16,13 +15,15 @@ const displayComments = async (id) => {
       <li class="f-item"><p>Official Site:</p>${show.officialSite}</li>
     </ul>`;
 
-  const list = document.querySelector(".list-comments");
-  cleanComments();
-  updateCommentCounter(comments); // Call the updated setCounter function
+  const list = document.querySelector('.list-comments');
+
+  // Call the countComments function to update the comment counter
+  await countComments();
+
   if (comments.length !== undefined) {
     comments.forEach((elem) => {
-      const add = document.createElement("li");
-      add.setAttribute("class", "item-comment");
+      const add = document.createElement('li');
+      add.setAttribute('class', 'item-comment');
       add.innerHTML = `
         <div class="c-user-data">
           <h4 class="c-user">${elem.username}</h4>

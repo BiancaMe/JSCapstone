@@ -1,0 +1,188 @@
+.popup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  backdrop-filter: blur(3px);
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.c-popup {
+  width: 80%;
+  height: 90%;
+  background-color: rgb(80, 80, 80);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 4px 4px 4px 4px rgba(0.5, 0.5, 0.5, 0.5);
+  border-radius: 3px;
+  overflow-y: scroll;
+  padding: 0 0 20px 0;
+}
+
+.l-popup {
+  margin: 0;
+}
+
+.l-popup a {
+  font-size: 2.5em;
+}
+
+.l-popup p {
+  font-size: 0.5em;
+}
+
+#close {
+  position: absolute;
+  right: 13%;
+  font-size: 3em;
+  color: rgb(0, 0, 0);
+}
+
+#close:hover {
+  color: rgb(232, 232, 232);
+}
+
+#dataShow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.p-title {
+  color: rgb(251, 251, 251);
+  font-size: 1.8em;
+  line-height: 20px;
+  letter-spacing: 2px;
+  font-weight: lighter;
+}
+
+.p-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0;
+  width: 60%;
+  border: 1px solid rgb(105, 99, 99);
+  border-radius: 2px;
+  text-align: left;
+  padding: 0 20px 0 20px;
+  background-color: rgb(73, 73, 73);
+}
+
+.f-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: sans-serif;
+  line-height: 1em;
+  margin: 0;
+  color: rgb(207, 203, 203);
+  font-size: 0.7em;
+}
+
+.f-item p {
+  color: rgb(3, 3, 3);
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.p-comments {
+  width: 60%;
+}
+
+.comments-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.cont {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.list-comments {
+  text-align: left;
+  list-style: none;
+}
+
+.item-comment {
+  background-color: rgba(103, 103, 103, 0.697);
+  padding: 0 15px 10px 15px;
+  border-radius: 2px;
+}
+
+.c-user-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c-user {
+  font-size: 0.95em;
+  color: black;
+  line-height: 0px;
+  margin: 0;
+}
+
+.c-date {
+  font-size: 0.8em;
+  color: rgb(158, 158, 158);
+}
+
+.comment {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(215, 214, 214);
+  font-size: 0.8em;
+  margin: 0;
+  padding-left: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  gap: 10px;
+  color: rgb(255, 255, 255);
+  align-items: center;
+}
+
+#f-name {
+  height: 28px;
+  border: none;
+  width: 70%;
+  border-radius: 2px;
+  font-family: "Righteous", cursive;
+}
+
+#f-text {
+  height: 100px;
+  border-radius: 2px;
+  width: 70%;
+  font-family: "Righteous", cursive;
+}
+
+#btn-submit {
+  height: 38px;
+  width: 150px;
+  background-color: rgb(50, 50, 50);
+  border-radius: 2px;
+  color: white;
+  font-family: "Righteous", cursive;
+  font-size: 18px;
+  border: none;
+}
+
+#btn-submit:hover {
+  background-color: rgb(116, 116, 116);
+  cursor: pointer;
+  font-size: 20px;
+}

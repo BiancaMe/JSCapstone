@@ -1,25 +1,25 @@
-export async function countComments() {
-  const commentIcons = document.querySelectorAll(".comment-icon");
+export default async function countComments() {
+  const commentIcons = document.querySelectorAll('.comment-icon');
   const commentPromises = [];
 
   commentIcons.forEach((commentIcon) => {
     const itemId = commentIcon
-      .closest(".item-card")
-      .querySelector(".comments-button")
-      .getAttribute("data-item-id");
+      .closest('.item-card')
+      .querySelector('.comments-button')
+      .getAttribute('data-item-id');
     const apiUrl = `https://involvement-api.com/comments/${itemId}`;
 
     const promise = fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
           throw new Error(
-            `Network response was not ok. Status: ${response.status}`
+            `Network response was not ok. Status: ${response.status}`,
           );
         }
         return response.json();
       })
       .catch((error) => {
-        console.error("Error counting comments:", error);
+        console.error('Error counting comments:', error);
         return { comments: 0 };
       });
 
@@ -35,6 +35,6 @@ export async function countComments() {
       commentCountElement.textContent = updatedCommentCount;
     });
   } catch (error) {
-    console.error("Error counting comments:", error);
+    console.error('Error counting comments:', error);
   }
 }

@@ -40,11 +40,7 @@ footer p a {
   text-decoration: none;
 }
 
-footer p a:hover {
-  text-decoration: underline;
-}
-
-#logo a {
+.logo a {
   font-family: "Bungee Shade", cursive;
   font-size: 60px;
   color: white;
@@ -54,7 +50,11 @@ footer p a:hover {
   line-height: 40px;
 }
 
-#logo p {
+footer p a:hover {
+  text-decoration: underline;
+}
+
+.logo p {
   font-family: "Righteous", cursive;
   font-size: 15px;
   color: white;
@@ -83,12 +83,24 @@ footer p a:hover {
   margin-top: 20px;
 }
 
+#home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
 #kanbanBoard {
   display: flex;
+  width: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 0 20px;
+}
+
+#item-counter {
+  margin-top: 100px;
 }
 
 .row {

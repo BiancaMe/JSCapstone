@@ -1,0 +1,161 @@
+body {
+  background-color: rgb(80, 80, 80);
+  margin: 0;
+  padding: 0;
+  font-family: "Righteous", cursive;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(40, 40, 40, 0.9);
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(40, 40, 40, 0.9);
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer p a {
+  color: white;
+  text-decoration: none;
+}
+
+.logo a {
+  font-family: "Bungee Shade", cursive;
+  font-size: 60px;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  line-height: 40px;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+
+.logo p {
+  font-family: "Righteous", cursive;
+  font-size: 15px;
+  color: white;
+  margin-top: 40px;
+}
+
+#navbar ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+#navbar li a {
+  text-decoration: none;
+  color: rgba(160, 160, 160, 0.8);
+  font-family: "Righteous", cursive;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+#navbar li a:hover {
+  color: white;
+}
+
+#navbar li {
+  margin-top: 20px;
+}
+
+#home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+#kanbanBoard {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding: 0 20px;
+}
+
+#item-counter {
+  margin-top: 100px;
+}
+
+.row {
+  width: calc(33.33% - 10px); /* Three cards per row with spacing between */
+  margin-bottom: 20px;
+}
+
+.item-card {
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+.item-image {
+  width: 40%;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+h3 {
+  font-size: 14px;
+  margin: 5px 0;
+  color: white;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.like-icon {
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 3px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.like-count {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.comments-button {
+  background-color: rgba(0, 123, 255, 0.7);
+  border: none;
+  border-radius: 5px;
+  padding: 3px 8px;
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comments-button:hover {
+  background-color: rgba(0, 123, 255, 1);
+}

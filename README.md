@@ -2,6 +2,7 @@
   
 
   <h1><b>Java Script Capstone Project</b></h1>
+  <h1><b>WhatWatch</b></h1>
 
 </div>
 
@@ -29,9 +30,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 <a name="about-project">JS Capstone Project</a>
+# 📖 <a name="about-project">JS Capstone Project-WhatWatch</a>
 
-**JS Capstone Project** is a web application based on an external API. You will select an API that provides data about a topic that you like and then build the web app around it. The web app will have 2 user interfaces.
+**WhatWatch** is a web application based on an external API. You will select an API that provides data about a topic that you like and then build the web app around it. The web app will have 2 user interfaces.
 
 ## 🛠 Built With <a name="built-with">HTML5, CSS3 & JS</a>
 
